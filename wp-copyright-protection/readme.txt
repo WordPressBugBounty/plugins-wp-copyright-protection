@@ -1,20 +1,31 @@
 === WP-Copyright-Protection ===
 Contributors: dave.ligthart
 Donate link: https://daveligthart.com
-Tags: copyright,protection,no right click,content protection,image protection,copy,protect
+Tags: copyright,protection,content protection,image protection,disable right click
 Requires at least: 2.3
-Tested up to: 5.3.2
-Stable tag: 1.7
+Tested up to: 6.7.2
+Stable tag: 1.9.1
+License: GPLv2 or later
 
-Simple copyright protection for your images and text.
+Simple copyright protection for your images and text. 
+No right click, no text selections, no screenshots. 
+A very lean and clean plugin.
 
 == Description ==
 
-A simple way to protect the content on your website. For most browsers: disables text copy, image copy and will keep your site out of an iframe.
+A simple way to protect the content on your website. 
+
+For most browsers: 
+
+- no text copy
+- no image copy
+- no screenshots
+- no right clicks 
+- no iframe
 
 This plugin is clean and easy.
 
-WordPress MU, PHP4 and safe_mode compatible.
+A rating + review is appreciated.
 
 == Installation ==
 
@@ -61,3 +72,17 @@ Fixed filling of the form fields in iOS
 = Version 1.7 =
 
 Minor changes.
+
+= Version 1.8 =
+
+Tested: WordPress version: 6.7.2
+Minor changes.
+
+= Version 1.8.1 =
+
+Added License field
+Reduced number of tags
+
+= Version 1.9 = 
+
+Added overlay feature to protect from screenshots

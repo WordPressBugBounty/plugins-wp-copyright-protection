@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP-Copyright-Protection
-Plugin URI: https://github.com/dligthart/wp-copyright-protection
-Description: A simple way to add copyright protection to your website. Disables text copy, image copy and breaks out of iframe.
+Plugin URI: https://wordpress.com/plugins/wp-copyright-protection
+Description: A simple way to add copyright protection to your website. Disables text copy, image copy, breaks out of iframe and protects your site from screenshots.
 Author: dave.ligthart
-Version: 1.7
-Author URI: https://daveligthart.com
+Version: 1.9
+Author URI: https://lightheart.tech
 */
 
 /**
@@ -14,7 +14,7 @@ Author URI: https://daveligthart.com
  * @author dligthart
  * @package wpcp
  * @subpackage core
- * @version 1.7
+ * @version 1.9
  */
 
 /** Back-End **/
@@ -34,8 +34,13 @@ add_action('wp_head', 'wp_copyright_protection');
  */
 function wpcp_create_menu()
 {
-    add_options_page('WP-Copyright-Protection', 'WP-Copyright-Protection',
-        'manage_options', 'wpcp_options', 'wpcp_render_settings_page');
+    add_options_page(
+        'WP-Copyright-Protection',
+        'WP-Copyright-Protection',
+        'manage_options',
+        'wpcp_options',
+        'wpcp_render_settings_page'
+    );
 }
 
 
@@ -177,15 +182,46 @@ function wp_copyright_protection()
             }
             /*]]>*/
         </script>
-        <script>
+        <script type="text/javascript">
             /*<![CDATA[*/
             document.ondragstart = function () {
                 return false;
             };
             /*]]>*/
         </script>
-        <style type="text/css">
+        <script type="text/javascript">
 
+            document.addEventListener('DOMContentLoaded', () => {
+                const overlay = document.createElement('div');
+                overlay.id = 'overlay';
+
+                Object.assign(overlay.style, {
+                    position: 'fixed',
+                    top: '0',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    display: 'none',
+                    zIndex: '9999'
+                });
+
+                document.body.appendChild(overlay);
+
+                document.addEventListener('keydown', (event) => {
+                    if (event.metaKey || event.ctrlKey) {
+                        overlay.style.display = 'block';
+                    }
+                });
+
+                document.addEventListener('keyup', (event) => {
+                    if (!event.metaKey && !event.ctrlKey) {
+                        overlay.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+        <style type="text/css">
             * {
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
@@ -200,10 +236,11 @@ function wp_copyright_protection()
                 user-select: none;
             }
 
-            input, textarea, select {
-	            -webkit-user-select: auto;
+            input,
+            textarea,
+            select {
+                -webkit-user-select: auto;
             }
-
         </style>
         <!-- End Copyright protection script -->
 
